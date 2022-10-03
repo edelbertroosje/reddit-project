@@ -1,9 +1,14 @@
-article{
-    background-color: green;
-    border: 2px solid black;
-    flex-grow:0;
-    flex-shrink:1;
+.article {
+    border: 2px solid blue;
     display: flex;
     flex-direction:row;
-    flex-basis: 140px;
+    justify-content: space-around;
+    flex-grow:0;
+    flex-shrink:1;
+
+}
+.reddit {
+    border: 2px solid blue;
+    display: flex;
+    flex-direction:column;
 }

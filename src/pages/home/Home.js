@@ -4,11 +4,11 @@ import {Link} from "react-router-dom";
 import './Home.css';
 
 const Home = () => {
-    const [redditData, setRedditData] = useState('')
+    const [redditData, setRedditData] = useState([]);
     useEffect(() => {
         async function fetchData() {
             try {
-                const result = await axios.get(`https://www.reddit.com/hot.json?limit=15`);
+                const result = await axios.get('https://www.reddit.com/hot.json?limit=15');
                 console.log(result.data.data.children)
                 setRedditData(result.data.data.children)
             } catch (e) {
@@ -19,13 +19,13 @@ const Home = () => {
         fetchData()
     }, [])
     return (
-        <div className="">
-                {redditData && redditData.map((reddit) => {
+        <div className="article">
+                {redditData.map((reddit) => {
                     return (
-                        <article >
-                            <h1 key={reddit.data.title}>{reddit.data.title}</h1>
-                            <Link key={reddit.data.subreddit} to={`/subreddit/${reddit.data.subreddit}`}>{reddit.data.subreddit_name_prefixed}</Link>
-                            <p key={reddit.data.num_comments}> Comments: {reddit.data.num_comments} - Ups: {reddit.data.ups}</p>
+                        <article className="reddit" key={reddit.data.id}>
+                            <h1>{reddit.data.title}</h1>
+                            <Link to={`/subreddit/${reddit.data.subreddit}`}>{reddit.data.subreddit_name_prefixed}</Link>
+                            <p > Comments: {reddit.data.num_comments} - Ups: {reddit.data.ups}</p>
                         </article>
                     )
                 })}
